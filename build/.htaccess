@@ -1,0 +1,21 @@
+#Error 404
+#ErrorDocument 404 http://yoursite.address.com #uncomment to redirect on uncorrect url
+
+# compress the files
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript text/x-component application/x-javascript application/javascript image/x-icon image/gif image/png image/jpg image/jpeg
+# removes some bugs
+BrowserMatch ^Mozilla/4 gzip-only-text/html
+BrowserMatch ^Mozilla/4\.0[678] no-gzip
+BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+Header append Vary User-Agent
+
+#Caching for files
+FileETag MTime Size
+<ifmodule mod_expires.c>
+<filesmatch ".(jpg|gif|png|css|js)$">
+ExpiresActive on
+ExpiresDefault "access plus 6 month"
+</filesmatch>
+</ifmodule>
+
+AddDefaultCharset utf-8
