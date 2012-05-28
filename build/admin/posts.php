@@ -39,6 +39,7 @@ else
 			?>
 			</div>
 			<?
+				require 'post_area_media.php';
 		}
 	}
 }

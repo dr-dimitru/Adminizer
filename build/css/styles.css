@@ -46,6 +46,20 @@ a {
 	margin-bottom: 15px;
 	padding: 20px;
 }
+.hero-unit p{
+	font-size: 30px;
+	font-weight: 100;
+}
+.hero-unit h1{
+	font-size: 90px;
+	font-weight: 500;
+}
+.hero-unit .btn{
+	float: none;
+	font-size: 15px;
+	padding: 14px;
+	margin: 5px;
+}
 h2 a{
 	font-weight: 300;
 	font-size: 22px;
@@ -53,18 +67,19 @@ h2 a{
 .page-header h1{
 	font-weight: 300;
 	font-size: 40px;
+	color:  #D14;
 }
 .mozaic_desc{
 	max-height: 126px;
 	overflow: hidden;
 	position: relative;
-	padding-right: 27px;
+	padding-right: 24px;
 	text-align: justify;
 }
 .mozaic_desc .continue_read{
 	position: absolute;
 	bottom: 0px;
-	right: 2px;
+	right: 0px;
 }
 .bs-links {
   margin: 2px auto;
