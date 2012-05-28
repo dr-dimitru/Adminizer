@@ -64,7 +64,9 @@ $json_save = '{"id": "'.$post_id.'", "title": "\'+encodeURI($(\'#title_'.$post_i
 	
 	<div class="modal-body">
 		<ul class="thumbnails">
-	<?
+<?
+if($mediaFiles)
+{
 	foreach($mediaFiles as $key => $value)
 	{
 		?>
@@ -90,7 +92,8 @@ $json_save = '{"id": "'.$post_id.'", "title": "\'+encodeURI($(\'#title_'.$post_i
 			</li>
 		<?
 	}
-	?>
+}
+?>
 		</ul>
 		<input id="selected_media_<?= $post_id ?>" type="hidden" class="<?= $selected_media ?>" style="display:none" value="<?= $selected_media ?>" />
 	</div>
