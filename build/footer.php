@@ -5,6 +5,7 @@
 	<?= $main_class->getContent('footer_text'); ?>
 	
 	<div class="footer" style="text-align:left; font-weight: 100; font-size: 10px;">
+	<hr>
 		<p>Code licensed under the <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Documentation licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
 		<p>Icons from <a href="http://glyphicons.com">Glyphicons Free</a>, licensed under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
 		<p>Код распространяется под лицензией <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">Apache License v2.0</a>. Документация распространяется под лицензией <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
@@ -20,8 +21,20 @@
 	</script>
 </footer>
 </div>
+<script type="text/javascript">
+	window.___gcfg = {
+	  lang: '<?= $fb_lang ?>',
+	  parsetags: 'onload'
+	};
+	
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
 <!--
-Copyright [2012] [Veliov Group: Dmitriy A. Golev]
+Copyright 2012 Veliov Group: Dmitriy A. Golev
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

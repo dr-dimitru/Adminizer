@@ -3,12 +3,12 @@
 ____________________________________________________________________________
 _________////////////////////////////////////////////////////|_____________
 ________////////////////////////////////////////////////////||____________
-_______//|     (c) Adminizer by Veliov Group       |///////|||////////////\
+_______//|              Adminizer CMS              |///////|||////////////\
 ______///|       WE'RE PROWIDE HIGH-QUALITY        |//////||||///////////_\\
 _____////|_AND_NON-COMMERCIAL_SERVICES_FOR_PEOPLE__|/////|||||//////////_\\\\
 ____/////|     CONTACT AUTHOR: INFOatVELIOV.COM;   |////||||||/////////_\\\\\\
-___//////| VELIOV.COM - SaaS APPS AND DEVELOPMENT. |///|||||||////////_\\\\\\\\
-__///////|          (c) Veliov Group               |//||||||||///////_\\\\\\\\\\
+___//////|        SaaS APPS AND DEVELOPMENT.       |///|||||||////////_\\\\\\\\
+__///////|           (c) VeliovGroup.com           |//||||||||///////_\\\\\\\\\\
 _////////////////////////////////////////////////////|||||||||//////_\\\\\\\\\\\\
 ////////////////////////////////////////////////////||||||||||/////_\\\\\\\\\\\\\\
 _________|||||||||||||||||||||||||||||||||||||||||||||||||||||////_\\\\\\\\\\\\\\\\
@@ -19,7 +19,7 @@ ________________________________________________________________________________
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html style="padding:0px; margin:0px;" class="no-js" lang="<?= $fb_lang ?>"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html itemscope itemtype="http://schema.org/WebPage" xmlns:og="http://ogp.me/ns#" style="padding:0px; margin:0px;" class="no-js" lang="<?= $fb_lang ?>"> <!--<![endif]-->
 	<head>
 		<!--[if lt IE 9]>
 		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -76,8 +76,8 @@ ________________________________________________________________________________
 		{?>
 		<meta property="og:image" content="<?= SITE_URL ?>/img/logo_sq.png" />
 		<?}?>
+		<meta property="fb:app_id" content="367108623351010" />
 		<meta id="ogname" property="og:site_name" content="<?= $main_class->getContent('site_title'); ?>" />
-		<meta property="fb:admins" content="100001233782962" />
 		<meta id="ogdesc" property="og:description" content="<?= trim(htmlspecialchars(strip_tags($value['post_text']))); ?>" />
 		<!--END FaceBook Open Graph-->
 		
