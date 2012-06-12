@@ -13,7 +13,7 @@
 		<ul class="thumbnails">
 			<li class="span8" style="margin:0px auto; float:none">
 				<a href="<?= SITE_URL ?>" class="thumbnail">
-					<img src="img/logo_hi.png" />
+					<img src="img/logo_hi.png" alt="adminizer_logo" title="adminizer_logo" />
 				</a>
 		   </li>
 		</ul>
@@ -23,10 +23,18 @@
 	<div class="bs-links">
 		<ul class="quick-links">
 			<li>
-				<a href="./?ru=1">Русская Версия</a>
-			</li> |
+			<?if($lang_code == 'ru'){?>
+				<span class="label label-info">Русская Версия</span>
+			<?}else{?>
+				<a href="./?ru=1" style="position:relative; top:3px">Русская Версия</a>
+			<?}?>
+			</li>
 			<li>
-				<a href="./?en=1">English Version</a>
+			<?if($lang_code == 'en'){?>
+				<span class="label label-info">English Version</span>
+			<?}else{?>
+				<a href="./?en=1" style="position:relative; top:3px">English Version</a>
+			<?}?>
 			</li>
 		</ul>
 		<ul class="quick-links">

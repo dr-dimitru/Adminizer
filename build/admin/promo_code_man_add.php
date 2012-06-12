@@ -7,7 +7,10 @@
 	
 	$code = $json_arr['code'];
 	
-	$main_class->addPromoCode($code);
+	if($code)
+	{
+		$main_class->addPromoCode($code);
+	}
 	
 	require_once 'promo_code_table.php';
 ?>

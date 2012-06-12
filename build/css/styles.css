@@ -65,10 +65,28 @@ h2 a{
 	font-size: 22px;
 }
 .page-header h1{
-	font-weight: 300;
-	font-size: 40px;
+	font-weight: 100;
+	font-size: 50px;
 	color:  #D14;
 }
+
+.page-header h1 img{
+	margin-bottom: 13px;
+}
+
+.page-header h1 small{
+	position: relative;
+	top: -5px;
+}
+
+h1, h2{
+	font-weight: 300;
+}
+
+h3, h4{
+	font-weight: 400;
+}
+
 .mozaic_desc{
 	max-height: 126px;
 	overflow: hidden;
@@ -102,7 +120,13 @@ h2 a{
 .quick-links .github-btn,
 .quick-links .tweet-btn,
 .quick-links .follow-btn,
-.quick-links div {
+.quick-links div,
+.quick-links li iframe {
   position: relative !important;
   max-width: 220px !important;
+}
+
+.quick-links div, .tweet-btn, .tweet-btn iframe {
+  position: relative !important;
+  max-width: 130px !important;
 }

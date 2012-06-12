@@ -43,7 +43,20 @@ if($promoCodes)
 				<?= $used_icon ?>
 			</td>
 			<td>
-				<?= $value['owner'] ?>
+			<?
+			if($value['owner'])
+			{
+				if($_SESSION["admin"] == 400)
+				{
+					list($email, $domen) = explode("@", $value['owner']);
+					echo "******@".$domen;
+				}
+				else
+				{
+					echo $value['owner'];
+				}
+			}
+			?>
 			</td>
 		</tr>
 	<?

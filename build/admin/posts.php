@@ -29,6 +29,7 @@ else
 			
 			${post_title.$post_id} = $value["post_title"];;
 			${post_text.$post_id} = $value["post_text"];
+			${post_tags.$post_id} = $value["tags"];
 			${post_access_.$post_access.$post_id} = "SELECTED";
 			${post_section_.$post_section.$post_id} = "SELECTED";
 			

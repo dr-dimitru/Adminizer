@@ -13,17 +13,23 @@ if(!$posts)
 		
 		${post_title.$post_id} = $value["post_title"];;
 		${post_text.$post_id} = $value["post_text"];
+		${post_tags.$post_id} = $value["tags"];
 		${post_access_.$post_access.$post_id} = "SELECTED";
 		${post_section_.$post_section.$post_id} = "SELECTED";
 	}
 }
 
 $json_delete = '{ "id": "'.$post_id.'", "delete": "delete" }';
-$json_save = '{"id": "'.$post_id.'", "title": "\'+encodeURI($(\'#title_'.$post_id.'\').val())+\'", "text": "\'+encodeURI($(\'#text_'.$post_id.'\').val())+\'", "access": "\'+$(\'#post_access_'.$post_id.'\').val()+\'", "section": "\'+$(\'#section_'.$post_id.'\').val()+\'", "media": "\'+$(\'#selected_media_'.$post_id.'\').val()+\'"}';
+$json_save = '{"id": "'.$post_id.'", "title": "\'+encodeURI($(\'#title_'.$post_id.'\').val())+\'", "text": "\'+encodeURI($(\'#text_'.$post_id.'\').val())+\'", "access": "\'+$(\'#post_access_'.$post_id.'\').val()+\'", "section": "\'+$(\'#section_'.$post_id.'\').val()+\'", "media": "\'+$(\'#selected_media_'.$post_id.'\').val()+\'", "tags": "\'+encodeURI($(\'#tags_'.$post_id.'\').val())+\'"}';
 ?>
 <div class="row">
-	<div class="span3 <?= ${error_title_field_.$post_id} ?>">
-		<input id="title_<?= $post_id ?>" class="span3 x-large" value="<?= htmlspecialchars(stripslashes(${post_title.$post_id})) ?>" />
+	<div class="span3">
+		<div class="<?= ${error_title_field_.$post_id} ?>">
+			<input id="title_<?= $post_id ?>" class="span3 x-large" value="<?= htmlspecialchars(stripslashes(${post_title.$post_id})) ?>" />
+		</div>
+		<div class="<?= ${error_tags_field_.$post_id} ?>">
+			<input id="tags_<?= $post_id ?>" placeholder="tag1, tag2, tag3, " class="span3 x-large" value="<?= htmlspecialchars(stripslashes(${post_tags.$post_id})) ?>" />
+		</div>
 	</div>
 	<div class="span5 <?= ${error_text_field_.$post_id} ?>">
 		<textarea id="text_<?= $post_id ?>" rows="8" class="span5"><?= htmlspecialchars(stripslashes(${post_text.$post_id})) ?></textarea>

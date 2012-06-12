@@ -1,5 +1,5 @@
 --------------------|DOWNLOAD  INFO|--------------------
-Download full vesion in archive build.7z, build.gtz or build.zip
+Download full vesion in archive build.7z, build.tgz or build.zip
 Or download partically.
 
 ---------------------|INSTALLATION|---------------------
@@ -24,8 +24,21 @@ More info:
  - For more information go to http://adminizer.veliovgroup.com
 
 
------------------------|LICENSE|-----------------------
-Copyright [2012] [Veliov Group: Dmitriy A. Golev]
+
+   ========================| Adminizer CMS |================================
+   Copyright 2012 Veliov Group: Dmitriy A. Golev
+   
+   This product includes software developed at
+   Veliov Group by Dmitriy A. Golev (http://veliovgroup.com/).
+   
+   Portions of this software were developed by Twitter's team in Bootstrap 
+   project (http://twitter.github.com/bootstrap/).
+   
+   The original software is available at http://adminizer.veliovgroup.com
+   
+   
+   ============================|LICENSE|====================================
+   Copyright 2012 Veliov Group: Dmitriy A. Golev
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.

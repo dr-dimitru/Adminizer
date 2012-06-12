@@ -1,4 +1,34 @@
 <?php
+/*
+ *  ADMINIZER CMS™
+ *
+ *
+ *  Copyright 2012 Veliov Group: Dmitriy A. Golev
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ 
+ 
+ lang_switcher.php - SETUP DEFAULT LANGUAGE OR APPLY LANGUAGE SAVED IN SESSION OR COOKIES.
+ TO APPLY LANGUAGE THRU POST OR GET PARAMS - JUST PASS ANY PARAMETER LIKE "..php?en=1"
+ WHERE "EN" IS LANG_CODE FROM LANG_TABLE
+ AND "1" IS RANDOM IDENTIFICATOR OF WHATEVER
+ 
+ AFTER THIS FILE YOU WILL HAVE GLOBAL VARIABLES:
+ $lang_code - LANGUAGE CODE LIKE "en"
+ $fb_lang - LANGUAGE CODE LIKE "en_US"
+ $text_lang - LANGUAGE NAME IN HUMAN TEXT LIKE "english"
+ */
+ 
 $language_main = new language_class();
 class language_class{
 	
@@ -76,7 +106,8 @@ class language_class{
 		{
 			$lang_params = $language_main->get_lang_params($_SESSION['language']);
 		}
-	
+		
+		//IF SESSION, GET, POST AND COOKIE EMPTY SET DEFAULT LANGUAGE
 		if(!isset($_SESSION['language']))
 		{
 			$lang_params = $language_main->get_lang_params('ru', true);

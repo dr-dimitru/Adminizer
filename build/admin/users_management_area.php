@@ -11,7 +11,21 @@ $json_save = '{"id": "'.$id.'", "name": "\'+encodeURI($(\'#name_'.$id.'\').val()
 		<input id="name_<?= $id ?>" class="input span2" value="<?= ${name.$id} ?>" />
 	</div>
 	<div class="span2 <?= ${error_email.$id} ?>">
-		<input id="email_<?= $id; ?>" class="input span2" value="<?= ${email.$id} ?>" />
+		<input id="email_<?= $id; ?>" class="input span2" value="<?
+		if(${email.$id})
+		{
+			if($_SESSION["admin"] == 400)
+			{
+				list($uemail, $domen) = explode("@", ${email.$id});
+				echo "******@".$domen;
+			}
+			else
+			{
+				echo ${email.$id};
+			}
+		}
+		
+		 ?>" />
 	</div>
 	<div class="span3 <?= ${error_access.$id} ?>">
 		<select id="access_<?= $id ?>" class="span3">

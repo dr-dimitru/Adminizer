@@ -33,6 +33,20 @@
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
   })();
 </script>
+<?
+$googleID = $main_class->getSiteSettings('google_analytics');
+
+if($googleID)
+{?>
+
+<script>
+  var _gaq=[['_setAccount','<?= $googleID ?>'],['_trackPageview']];
+  (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+  g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+  s.parentNode.insertBefore(g,s)}(document,'script'));
+</script>
+
+<?}?>
 <!--
 Copyright 2012 Veliov Group: Dmitriy A. Golev
 

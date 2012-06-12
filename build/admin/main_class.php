@@ -1,9 +1,39 @@
 <?php
+/*
+ *  ADMINIZER CMS™
+ *
+ *
+ *  Copyright 2012 Veliov Group: Dmitriy A. Golev
+ *
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+ *  you may not use this file except in compliance with the License.
+ *  You may obtain a copy of the License at
+ *
+ *  http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ 
+ 
+ main_class.php - MAIN FILE, CONTAINS ALL FUNCTIONS AND SETTINGS.
+ 
+ REQUIRES: settings.php
+           lang_switcher.php
+           
+ AFTER THIS FILE YOU WILL HAVE GLOBAL VARIABLES:
+ $content_names - ARRAY OF ALL CONTENT
+ $main_class - OBJECT OF main() CLASS.
+ LANGCODE - CONSTANT OF LANGUAGE CODE LIKE "en"
+ */
+
 require_once 'settings.php';
 require_once 'lang_switcher.php';
 define("LANGCODE", $lang_code, true);
 
-//GET ALL CONTENT
+//GET ALL CONTENT QUERY
 	$name_query = "SELECT `id`, `name`, `".LANGCODE."` FROM `".SQLPREFIX."content` ; ";
 	if($stmt = $mysqli->prepare($name_query))
 	{
@@ -16,13 +46,14 @@ define("LANGCODE", $lang_code, true);
 		}
 		$stmt->close();
 	}
-
+//END ALL CONTENT QUERY
 
 //MAIN CLASS
 $main_class = new main;
 
 class main {
 	
+	//MYSQLI
 	private $mysqli;
 	
 	public function __construct()
@@ -30,7 +61,10 @@ class main {
 		$this->mysqli = new mysqli(HOSTNAME,USERNAME,PASSWORD,DBNAME);
 		$this->mysqli->set_charset(MYSQL_CHARSET);
 	}
+	//END MYSQLI
 	
+	
+	//CONTENT FUNCTIONS
 	public function deleteAllContent($id)
 	{
 		$deleteAllContent_query = "DELETE QUICK FROM `".SQLPREFIX."content` WHERE `id` = ? ; ";
@@ -88,6 +122,24 @@ class main {
 		return $content;
 	}
 	
+	public function getContent($target)
+	{
+		global $content_names;
+		
+		foreach($content_names as $key => $value)
+		{
+			if($key == $target)
+			{
+				$content = $value['content'];
+				break;
+			}
+		}
+		return $content;
+	}
+	//END CONTENT FUNCTIONS
+	
+	
+	//MEDIA FUNCTIONS
 	public function deleteMedia($id, $url)
 	{
 		global $main_class;
@@ -157,7 +209,10 @@ class main {
 			}
 		}
 	}
+	//END MEDIA FUNCTIONS
 	
+	
+	//PROMOCODE FUNCTIONS
 	public function getPromoCodeByEmail($email)
 	{
 		$getPromoCodes_query = "SELECT * FROM `".SQLPREFIX."promocodes` WHERE `owner` = ? ; ";	
@@ -233,52 +288,58 @@ class main {
 		return $promoCodes;
 	}
 	
-	public function savePromoSettings($id, $value)
-	{
-		$savePromoSettings_query = "UPDATE `".SQLPREFIX."promo_settings` SET `value` = ? WHERE `id` = ? ; ";
-		if($stmt = $this->mysqli->prepare($savePromoSettings_query))
-		{
-			$stmt->bind_param('ii', $value, $id);
-			$stmt->execute();
-			$stmt->close();
-		}
-	}
 	
-	public function getPromoSettingsValueByName($name)
-	{
-		$getPromoSettings_query = "SELECT `value` FROM `".SQLPREFIX."promo_settings` WHERE `name` = ? ; ";	
-		if($stmt = $this->mysqli->prepare($getPromoSettings_query))
+		//PROMOCODE SETTINGS FUNCTIONS
+		public function savePromoSettings($id, $value)
 		{
-			$stmt->bind_param('s', $name);
-			$stmt->execute();
-			$stmt->bind_result($value);
-				
-			while($stmt->fetch())
+			$savePromoSettings_query = "UPDATE `".SQLPREFIX."promo_settings` SET `value` = ? WHERE `id` = ? ; ";
+			if($stmt = $this->mysqli->prepare($savePromoSettings_query))
 			{
-				$promoSettings = $value;
+				$stmt->bind_param('ii', $value, $id);
+				$stmt->execute();
+				$stmt->close();
 			}
-			$stmt->close();
 		}
-		return $promoSettings;
-	}
-	
-	public function getPromoSettings()
-	{
-		$getPromoSettings_query = "SELECT * FROM `".SQLPREFIX."promo_settings` ; ";	
-		if($stmt = $this->mysqli->prepare($getPromoSettings_query))
+		
+		public function getPromoSettingsValueByName($name)
 		{
-			$stmt->execute();
-			$stmt->bind_result($id, $name, $value);
-				
-			while($stmt->fetch())
+			$getPromoSettings_query = "SELECT `value` FROM `".SQLPREFIX."promo_settings` WHERE `name` = ? ; ";	
+			if($stmt = $this->mysqli->prepare($getPromoSettings_query))
 			{
-				$promoSettings[$id] = array('name' => $name, 'value' => $value);
+				$stmt->bind_param('s', $name);
+				$stmt->execute();
+				$stmt->bind_result($value);
+					
+				while($stmt->fetch())
+				{
+					$promoSettings = $value;
+				}
+				$stmt->close();
 			}
-			$stmt->close();
+			return $promoSettings;
 		}
-		return $promoSettings;
-	}
+		
+		public function getPromoSettings()
+		{
+			$getPromoSettings_query = "SELECT * FROM `".SQLPREFIX."promo_settings` ; ";	
+			if($stmt = $this->mysqli->prepare($getPromoSettings_query))
+			{
+				$stmt->execute();
+				$stmt->bind_result($id, $name, $value);
+					
+				while($stmt->fetch())
+				{
+					$promoSettings[$id] = array('name' => $name, 'value' => $value);
+				}
+				$stmt->close();
+			}
+			return $promoSettings;
+		}
+		//END PROMOCODE SETTINGS FUNCTIONS
+	//END PROMOCODE FUNCTIONS
 	
+	
+	//USERS FUNCTIONS
 	public function deleteUser($id)
 	{
 		$deleteUser_query = "DELETE QUICK FROM `".SQLPREFIX."users` WHERE `id` = ? ; ";
@@ -350,7 +411,10 @@ class main {
 		}
 		return $user;
 	}
+	//END USERS FUNCTIONS
 	
+	
+	//ACCESS LEVELS FUNCTIONS
 	public function deleteAccessLevel($id)
 	{
 		$deleteAccessLevel_query = "DELETE QUICK FROM `".SQLPREFIX."accessLevels` WHERE `id` = ? ; ";
@@ -408,7 +472,10 @@ class main {
 			}
 		}
 	}
-
+	//END ACCESS LEVELS FUNCTIONS
+	
+	
+	//POSTS FUNCTIONS
 	public function deletePost($post_id)
 	{
 		$deletePost_query = "DELETE QUICK FROM `".SQLPREFIX."posts` WHERE `id` = ? ; ";
@@ -421,12 +488,39 @@ class main {
 		}
 	}
 	
-	public function updatePost($post_title, $post_text, $post_section, $post_access, $post_id, $media)
+	public function addQRCode($post_id)
 	{
-		$updatePost_query = "UPDATE `".SQLPREFIX."posts` SET `title` = ? , `text` = ? , `section` = ? , `access` = ?, `media` = ? WHERE `id` = ? ; ";
+		include "phpqrcode/qrlib.php";
+		
+		//QR-Code SETTINGS
+			$filename = $post_id.'_post.png';
+			$errorCorrectionLevel = 'H';
+			$matrixPointSize = 1;
+			$PNG_WEB_DIR = './admin/uploads/';
+			$filename = $PNG_WEB_DIR.$filename;
+			$QR_data = SITE_URL.'/item.php?id='.$post_id;
+			
+		//RUN QR-Code GENERATION
+			QRcode::png($QR_data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+		
+		//ADD QR-Code INTO DB
+		$addQRCode_query = "UPDATE `".SQLPREFIX."posts` SET `qr_code` = ? WHERE `id` = ? ; ";
+		if($stmt = $this->mysqli->prepare($addQRCode_query))
+		{
+			$stmt->bind_param('si', $filename, $post_id);
+			$stmt->execute();
+			$stmt->close();
+		}
+		
+		return $filename;
+	}
+	
+	public function updatePost($post_title, $post_text, $post_section, $post_access, $post_id, $media, $tags)
+	{
+		$updatePost_query = "UPDATE `".SQLPREFIX."posts` SET `title` = ? , `text` = ? , `section` = ? , `access` = ?, `media` = ?, `tags` = ? WHERE `id` = ? ; ";
 		if($stmt = $this->mysqli->prepare($updatePost_query))
 		{
-			$stmt->bind_param('ssiisi', $post_title, $post_text, $post_section, $post_access, $media, $post_id);
+			$stmt->bind_param('ssiissi', $post_title, $post_text, $post_section, $post_access, $media, $tags, $post_id);
 			$stmt->execute();
 			$stmt->close();
 		}
@@ -458,11 +552,11 @@ class main {
 			{
 				$stmt->bind_param('s', $lang_code);
 				$stmt->execute();
-				$stmt->bind_result($post_id, $post_title, $post_text, $post_when, $post_access, $post_section, $media, $lang_code);
+				$stmt->bind_result($post_id, $post_title, $post_text, $post_when, $post_access, $post_section, $media, $qr_code, $lang_code, $tags);
 				
 				while($stmt->fetch())
 				{
-					$posts[$post_id] = array('post_title' => $post_title, 'post_text' => $post_text, 'post_when' => $post_when, 'post_access' => $post_access, 'post_section' => $post_section, 'media' => $media);
+					$posts[$post_id] = array('post_title' => $post_title, 'post_text' => $post_text, 'post_when' => $post_when, 'post_access' => $post_access, 'post_section' => $post_section, 'qr_code' => $qr_code, 'media' => $media, 'tags' => $tags);
 				}
 				$stmt->close();
 			}
@@ -475,11 +569,11 @@ class main {
 				{
 					$stmt->bind_param('i', $id);
 					$stmt->execute();
-					$stmt->bind_result($post_id, $post_title, $post_text, $post_when, $post_access, $post_section, $media, $lang);
+					$stmt->bind_result($post_id, $post_title, $post_text, $post_when, $post_access, $post_section, $media, $qr_code, $lang, $tags);
 					
 					while($stmt->fetch())
 					{
-						$posts[$post_id] = array('post_title' => $post_title, 'post_text' => $post_text, 'post_when' => $post_when, 'post_access' => $post_access, 'post_section' => $post_section, 'media' => $media);
+						$posts[$post_id] = array('post_title' => $post_title, 'post_text' => $post_text, 'post_when' => $post_when, 'post_access' => $post_access, 'post_section' => $post_section, 'qr_code' => $qr_code, 'media' => $media, 'tags' => $tags);
 					}
 					$stmt->close();
 				}
@@ -487,8 +581,10 @@ class main {
 		
 		return $posts;
 	}
+	//END POSTS FUNCTIONS
 	
 	
+	//SECTIONS FUNCTIONS
 	public function deleteSection($section_id)
 	{
 		$deleteSection_query = "DELETE QUICK FROM `".SQLPREFIX."section` WHERE `id` = ? ; ";
@@ -567,22 +663,10 @@ class main {
 		
 		return $sections;
 	}
+	//END SECTIONS FUNCTIONS
 	
-	public function getContent($target)
-	{
-		global $content_names;
-		
-		foreach($content_names as $key => $value)
-		{
-			if($key == $target)
-			{
-				$content = $value['content'];
-				break;
-			}
-		}
-		return $content;
-	}
 	
+	//SITE SETTINGS FUNCTIONS
 	public function deleteSiteSettings($id)
 	{
 		$SiteSettings_query = "DELETE QUICK FROM `".SQLPREFIX."site_settings` WHERE `id` = ? ; ";
@@ -656,7 +740,10 @@ class main {
 			return $siteSettings;
 		}	
 	}
+	//END SITE SETTINGS FUNCTIONS
 	
+	
+	//USER LOGIN/LOGOUT FUNCTIONS
 	public function userLogin($login, $level=null)
 	{
 		global $main_class;
@@ -686,6 +773,20 @@ class main {
 		unset($_SESSION["user"]);
 	}
 	
+	public function userPasswordRecovery($email, $password)
+	{
+		$userPasswordRecovery_query = "UPDATE `".SQLPREFIX."users` SET `password` = ? WHERE `email` = ? ; ";
+		if($stmt = $this->mysqli->prepare($userPasswordRecovery_query))
+		{
+			$stmt->bind_param('ss', $password, $email);
+			$stmt->execute();
+			$stmt->close();
+		}
+	}
+	//END USER LOGIN/LOGOUT FUNCTIONS
+	
+	
+	//ADMIN FUNCTIONS
 	public function deleteAdmin($id)
 	{
 		$deleteUser_query = "DELETE QUICK FROM `".SQLPREFIX."admin` WHERE `id` = ? ; ";
@@ -824,7 +925,10 @@ class main {
 			}
 		}
 	}
+	//END ADMIN FUNCTIONS
 	
+	
+	//SEND EMAIL FUNCTION
 	public function send_email($email, $message, $subject)
 	{
 		global $main_class;
@@ -840,5 +944,6 @@ class main {
 		
 		mail($email, $subject, $message, $headers);
 	}
+	//END SEND EMAIL FUNCTION
 }
 ?>

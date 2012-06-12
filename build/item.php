@@ -2,60 +2,41 @@
 <? 
 require_once 'user_class.php';
 
+//GET POST'S ID AND CALL FOR POST'S DATA ARRAY
 $id = $_GET['id'];
 $post = $main_class->getPosts($id);
+
+//CALL FOR ALL MEDIA ARRAY
 $mediaFiles = $main_class->getMedia();
-if($post)
+if($post && $id)
 {
 	foreach($post as $key => $value)
 	{
-		$post_media = explode(",", $value["media"]);
+		//CREATE POSTS'S MEDIA ARRAY FROM STRING
+		if($value["media"])
+		{
+			$post_media = explode(",", $value["media"]);
+		}
 	}
+	
+	if(!$value["qr_code"])
+	{	
+		//CALL TO CREATE QR-CODE IF DOES NOT EXIST
+		$filename = $main_class->addQRCode($id);
+	}
+	
+	//ITEM HEAD WITH IMAGES, TITLE, DESC & ETC.
 	require_once 'item_head.php';
 }
 else
 {
+	//STANDART HEAD FOR WRONG POST $ID
 	require_once 'head.php';
 }
 
+//CALL ALL POSTS ARRAY FOR POSTS_MOZAIC_STATIC
 $posts = $main_class->getPosts();
-?>
 
-<body>
-	<? require_once 'header.php' ?>
-	
-	<div id="main_container" class="container">
-		<?if($id && $post){?>
-		<div class="row">
-			<div class="span12">
-				<div class="page-header">
-					<h1><?= $value["post_title"] ?> <small><a href="https://twitter.com/share" class="twitter-share-button" data-url="<?= SITE_URL ?><?= $_SERVER['REQUEST_URI'] ?>" data-count="horizontal" data-via="VeliovGroup" data-related="<?= $value['post_title']; ?>">Tweet</a> <a href="#" class="g-plusone" data-size="medium" data-href="<?= SITE_URL ?><?= $_SERVER['REQUEST_URI'] ?>"></a></small></h1>
-				</div>
-				<div class="row">
-					<div class="span12">
-							<?= $value["post_text"]; ?>
-					</div>
-				</div>
-			</div>
-		</div>
-		<?}else{?>
-		<div class="row">
-			<div class="span12">
-				<div class="page-header well">
-					<h1><?= $main_class->getContent('no_page'); ?></h1>
-				</div>
-			</div>
-		</div>
-		<?}?>
-		<div class="row">
-			<div class="span12">
-				<div class="page-header">
-					<h1><?= $main_class->getContent('more_word'); ?></h1>
-				</div>
-				<? require_once 'posts_mozaic_static.php'; ?>
-			</div>
-		</div>
-	</div>
-	<? require_once 'footer.php'; ?>
-</body>
-</html>
+//REQUIRE BODY CONTAINER
+require 'item_container.php';
+?>

@@ -21,6 +21,7 @@ $post_text = preg_replace('#<br>#i', "\n", $post_text);
 $post_section = $json_arr["section"];
 $post_access = $json_arr["access"];
 $media = $json_arr["media"];
+$tags = rawurldecode($json_arr["tags"]);
 
 if(!empty($media))
 {
@@ -83,8 +84,9 @@ else
 	${error_text_field_.$post_id} = 'success control-group';
 	${error_section_.$post_id} = 'success control-group';
 	${error_access_.$post_id} = 'success control-group';
+	${error_tags_field_.$post_id} = 'success control-group';
 	
-	$main_class->updatePost($post_title, $post_text, $post_section, $post_access, $post_id, $media_string);
+	$main_class->updatePost($post_title, $post_text, $post_section, $post_access, $post_id, $media_string, $tags);
 	die(require_once 'post_area.php');
 }
 ?>
