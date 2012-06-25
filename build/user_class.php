@@ -70,6 +70,28 @@ class user_class{
 		
 		return $posts;
 	}
+	
+	public function getPageByName($needle)
+	{
+		$needle = "%".$needle."%";
+		$getPageByName_query = "SELECT `id` FROM `".SQLPREFIX."posts` WHERE `title` LIKE ? LIMIT 0,1 ; ";
+		
+		if($stmt = $this->mysqli->prepare($getPageByName_query))
+		{
+			$stmt->bind_param('s', $needle);
+			$stmt->execute();
+			$stmt->bind_result($pid);
+			
+			while($stmt->fetch())
+			{
+				$id = $pid;
+			}
+			
+			$stmt->close();
+		}
+		
+		return $id;
+	}
 
 }
 ?>

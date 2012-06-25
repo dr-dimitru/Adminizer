@@ -8,36 +8,39 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 </script>
-<header class="row wellPic">
+<header class="">
 	<div onclick="location.href='<?= SITE_URL ?>'">
 		<ul class="thumbnails">
 			<li class="span8" style="margin:0px auto; float:none">
 				<a href="<?= SITE_URL ?>" class="thumbnail">
-					<img src="img/logo_hi.png" alt="adminizer_logo" title="adminizer_logo" />
+					<img src="<?= SITE_URL ?>/img/logo_hi.png" alt="adminizer_logo" title="adminizer_logo" />
 				</a>
 		   </li>
 		</ul>
 	</div>
 </header>
+
+<div class="content_container">
+<div class="cc_top"></div>
 <div class="container" style="position:relative;">
 	<div class="bs-links">
-		<ul class="quick-links">
+		<ul class="quick-links" style="text-transform:uppercase; font-size:12px; font-weight: bold;">
 			<li>
 			<?if($lang_code == 'ru'){?>
 				<span class="label label-info">Русская Версия</span>
 			<?}else{?>
-				<a href="./?ru=1" style="position:relative; top:3px">Русская Версия</a>
+				<a href="<?= SITE_URL ?>/?ru=1" style="position:relative; top:3px">Русская Версия</a>
 			<?}?>
 			</li>
 			<li>
 			<?if($lang_code == 'en'){?>
 				<span class="label label-info">English Version</span>
 			<?}else{?>
-				<a href="./?en=1" style="position:relative; top:3px">English Version</a>
+				<a href="<?= SITE_URL ?>/?en=1" style="position:relative; top:3px">English Version</a>
 			<?}?>
 			</li>
 		</ul>
-		<ul class="quick-links">
+		<ul class="quick-links" onclick=" _gaq.push(['_trackEvent', 'github', 'go_to_github', 'View on GitHub']);">
 			<li>
 				<iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=dr-dimitru&repo=Adminizer&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="130px" height="30px"></iframe>
 			</li>
@@ -60,5 +63,18 @@
 				<div class="fb-like" data-href="<?= SITE_URL ?>" data-send="false" data-layout="button_count" data-width="120" data-show-faces="false"></div>
 			</li>
 		</ul>
+	</div>
+	<div class="pull-right" id="user_login_logout">
+	<h6>
+	<?
+		if(!$_SESSION['user'])
+		{?>
+			<a href="#login_form" data-toggle="modal"><?= $main_class->getContent('login_word'); ?></a> | <a href="#registration_form" data-toggle="modal"><?= $main_class->getContent('registration_word'); ?></a>
+		<?}
+		else
+		{?>
+			<?= $_SESSION['user']['name'] ?> | <a id="logout_href" href="#" onclick="shower('user_logout.php', 'logout_href', 'user_login_logout')"><?= $main_class->getContent('logout_word'); ?></a>
+		<?}?>
+	</h6>
 	</div>
 </div>

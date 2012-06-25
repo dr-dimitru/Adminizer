@@ -74,8 +74,7 @@ class main {
 			$stmt->execute();
 			$stmt->close();
 		}
-		
-		return $content;
+
 	}
 	
 	public function saveAllContent($name, $ru, $en)
@@ -87,8 +86,7 @@ class main {
 			$stmt->execute();
 			$stmt->close();
 		}
-		
-		return $content;
+
 	}
 	
 	public function updateAllContent($ru, $en, $id)
@@ -100,8 +98,7 @@ class main {
 			$stmt->execute();
 			$stmt->close();
 		}
-		
-		return $content;
+
 	}
 	
 	public function getAllContent()
@@ -475,19 +472,7 @@ class main {
 	//END ACCESS LEVELS FUNCTIONS
 	
 	
-	//POSTS FUNCTIONS
-	public function deletePost($post_id)
-	{
-		$deletePost_query = "DELETE QUICK FROM `".SQLPREFIX."posts` WHERE `id` = ? ; ";
-		
-		if($stmt = $this->mysqli->prepare($deletePost_query))
-		{
-			$stmt->bind_param('i', $post_id);
-			$stmt->execute();
-			$stmt->close(); 
-		}
-	}
-	
+	//QRCODE FUNCTIONS
 	public function addQRCode($post_id)
 	{
 		include "phpqrcode/qrlib.php";
@@ -513,6 +498,39 @@ class main {
 		}
 		
 		return $filename;
+	}
+	
+	public function createQRCode($QR_data)
+	{
+		include "phpqrcode/qrlib.php";
+		
+		//QR-Code SETTINGS
+			$filename = 'qr_'.$time().'.png';
+			$errorCorrectionLevel = 'H';
+			$matrixPointSize = 1;
+			$PNG_WEB_DIR = './admin/uploads/';
+			$filename = $PNG_WEB_DIR.$filename;
+			
+		//RUN QR-Code GENERATION
+			QRcode::png($QR_data, $filename, $errorCorrectionLevel, $matrixPointSize, 2);
+		
+		return $filename;
+	}
+	
+	//END QRCODE FUNCTIONS
+	
+	
+	//POSTS FUNCTIONS
+	public function deletePost($post_id)
+	{
+		$deletePost_query = "DELETE QUICK FROM `".SQLPREFIX."posts` WHERE `id` = ? ; ";
+		
+		if($stmt = $this->mysqli->prepare($deletePost_query))
+		{
+			$stmt->bind_param('i', $post_id);
+			$stmt->execute();
+			$stmt->close(); 
+		}
 	}
 	
 	public function updatePost($post_title, $post_text, $post_section, $post_access, $post_id, $media, $tags)

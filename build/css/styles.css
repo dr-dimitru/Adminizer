@@ -8,8 +8,19 @@ body {
 	font-smooth: always;
 }
 header{
-	position: relative;
-	padding-top: 5px;
+	position: fixed;
+	padding-top: 10px;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	min-height: 230px;
+	z-index: 10;
+	background: #EBEBEB url('/img/logo_bg.jpg') 100% no-repeat;
+	background-position: center center;
+	background-size: 100%;
+	-moz-box-shadow: inset rgba(0, 0, 0, .85) 0 0px 10px 3px;
+	-webkit-box-shadow: inset rgba(0, 0, 0, .85) 0 0px 10px 3px;
+	box-shadow: inset rgba(0, 0, 0, .85) 0 0px 10px 3px;
 }
 header a:hover{
 	background: #FAFAFA;
@@ -20,17 +31,31 @@ header a:hover{
 	border:1px solid transparent;
 }
 ::selection{
-   background: rgba(40, 209, 255, .3);
+   background: rgba(255, 191, 119, .5);
    text-shadow: none;
   }
 ::-moz-selection { 
-	background: rgba(40, 209, 255, .3);
+	background: rgba(255, 191, 119, .5);
 	text-shadow: none; 
 }
 a {
 	-webkit-tap-highlight-color: rgba(40, 209, 255, .3);
 }
-.wellPic {
+.content_container{
+	width: 100%;
+	background: #fff;
+	position: relative;
+	margin-top: 240px;
+	z-index: 100;
+}
+.cc_top{
+	background: url('/img/top.png') repeat-x;
+	background-size: 11px 11px;
+	height: 11px;
+	top: -11px;
+	position: relative;
+}
+.wellPic{
 	background: #EBEBEB url('/img/logo_bg.png') 150% no-repeat;
 	background-position: center center;
 	background-size: 100%;
@@ -41,8 +66,8 @@ a {
 .welcome_text{
 	font-weight: 300;
 	text-align: center;
-	border: none;
-	background: none;
+	//border: none;
+	//background: none;
 	margin-bottom: 15px;
 	padding: 20px;
 }
@@ -53,6 +78,9 @@ a {
 .hero-unit h1{
 	font-size: 90px;
 	font-weight: 500;
+	color: #555;
+	text-shadow: 0px -1px #000, 0px 1px #fff;
+	text-shadow: 0px -1px rgba(0, 0, 0, 0.80), 0px 1px rgba(255, 255, 255, 0.90);
 }
 .hero-unit .btn{
 	float: none;
@@ -64,10 +92,17 @@ h2 a{
 	font-weight: 300;
 	font-size: 22px;
 }
+.page-header{
+	background: #fafafa;
+	padding: 10px;
+}
 .page-header h1{
-	font-weight: 100;
+	font-weight: 300;
 	font-size: 50px;
-	color:  #D14;
+	color: #D14;
+	color: rgba(221, 17, 68, 0.98);
+	text-shadow: 0px -1px #580016, 0px 1px #fff;
+	text-shadow: 0px -1px rgba(0, 0, 0, 0.65), 0px 1px rgba(255, 255, 255, 0.90);
 }
 
 .page-header h1 img{

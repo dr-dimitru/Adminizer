@@ -21,6 +21,10 @@ ________________________________________________________________________________
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
 <!--[if gt IE 8]><!--> <html itemscope itemtype="http://schema.org/WebPage" xmlns:og="http://ogp.me/ns#" style="padding:0px; margin:0px;" class="no-js" lang="<?= LANGCODE ?>"> <!--<![endif]-->
 	<head>
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		<script src="<?= SITE_URL ?>/admin/js/modernizr-2.5.3.min.js"></script>
+		
 		<meta charset="<?= PAGES_CHARSET ?>" />
 		<!--[if lt IE 9]>
 		  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -33,10 +37,7 @@ ________________________________________________________________________________
 		<link rel="shortcut icon" href="img/favicon.ico" />
 		<link rel="apple-touch-icon-precomposed" href="img/icon.png">
 		
-		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/bootstrap-responsive.min.css" />
-		<link rel="stylesheet" type="text/css" href="css/styles.css" />
-		<link rel="stylesheet" type="text/css" href="admin/js/google-code-prettify/prettify.css" />
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-		<script src="admin/js/modernizr-2.5.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="<?= SITE_URL ?>/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?= SITE_URL ?>/css/bootstrap-responsive.min.css" />
+		<link rel="stylesheet" type="text/css" href="<?= SITE_URL ?>/css/styles.css" />
+		<link rel="stylesheet" type="text/css" href="<?= SITE_URL ?>/admin/js/google-code-prettify/prettify.css" />

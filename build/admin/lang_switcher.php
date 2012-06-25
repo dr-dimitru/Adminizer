@@ -28,7 +28,8 @@
  $fb_lang - LANGUAGE CODE LIKE "en_US"
  $text_lang - LANGUAGE NAME IN HUMAN TEXT LIKE "english"
  */
- 
+
+$default_lang = 'ru';
 $language_main = new language_class();
 class language_class{
 	
@@ -91,6 +92,13 @@ class language_class{
 			
 			break;
 		}
+		elseif(!$_SESSION['language'] && !$_COOKIE['lang'])
+		{
+			if(preg_match("/".$value["lang_code"]."/i",$_SERVER["HTTP_ACCEPT_LANGUAGE"])) 
+			{
+				$lang_params = $language_main->get_lang_params($value["lang_code"], true);
+			}
+		}
 	}
 	unset($value);
 	
@@ -110,7 +118,7 @@ class language_class{
 		//IF SESSION, GET, POST AND COOKIE EMPTY SET DEFAULT LANGUAGE
 		if(!isset($_SESSION['language']))
 		{
-			$lang_params = $language_main->get_lang_params('ru', true);
+			$lang_params = $language_main->get_lang_params($default_lang, true);
 		}
 	}
 	

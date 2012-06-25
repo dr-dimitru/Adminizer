@@ -13,7 +13,7 @@ if($mediaFiles)
 	{
 		?>
 			<li id="<?= $key ?>" class="span2">
-				<a href="#" onclick="$(this).find('.uploaded').toggle(); $('#selected_media_<?= $post_id ?>').toggleClass('<?= $key ?>'); $('#selected_media_<?= $post_id ?>').val($('#selected_media_<?= $post_id ?>').attr('class'));" class="thumbnail" style="position:relative">
+				<a href="#post_<?= $post_id ?>" onclick="$(this).find('.uploaded').toggle(); $('#selected_media_<?= $post_id ?>').toggleClass('<?= $key ?>'); $('#selected_media_<?= $post_id ?>').val($('#selected_media_<?= $post_id ?>').attr('class'));" class="thumbnail" style="position:relative">
 					<img src="<?= $value["url"] ?>" />
 		<?
 		if(in_array($key, $post_media))
@@ -41,6 +41,6 @@ if($mediaFiles)
 	</div>
 	<? unset($selected_media); ?>
 	<div class="modal-footer">
-		<button onclick="$('#post_media_<?= $post_id ?>').modal('hide'); showerp(showerp('<?= htmlspecialchars($json_save) ?>', 'save_post.php', 'post_button_<?= $post_id ?>', 'post_<?= $post_id ?>'));" class="btn btn-success pull-right"><?= $main_class->getContent('save_word'); ?></button>
+		<button type="button" onclick="$('#post_media_<?= $post_id ?>').modal('hide'); showerp(showerp('<?= htmlspecialchars($json_save) ?>', 'save_post.php', 'post_button_<?= $post_id ?>', 'post_<?= $post_id ?>'));" class="btn btn-success pull-right"><?= $main_class->getContent('save_word'); ?></button>
 	</div>
 </div>

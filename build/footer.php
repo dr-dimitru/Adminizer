@@ -12,15 +12,22 @@
 		<p>Иконки нарисованы и предоставлены <a href="http://glyphicons.com">Glyphicons Free</a>, под лицензией <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p>
 	</div>
 	
-	<script src="admin/js/bootstrap.min.js"></script>
-	<script src="admin/js/google-code-prettify/prettify.js"></script>
-	<script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+	<script src="<?= SITE_URL ?>/admin/js/bootstrap.min.js"></script>
+	<script src="<?= SITE_URL ?>/admin/js/google-code-prettify/prettify.js"></script>
+	<script type="text/javascript" src="https://platform.twitter.com/widgets.js"></script>
 	<script>
 		$('a').tooltip();
 		prettyPrint();
 	</script>
 </footer>
 </div>
+
+</div> <!-- Close Content_Container class div tag -->
+
+
+<? require_once 'user_forms.php' ?>
+
+
 <script type="text/javascript">
 	window.___gcfg = {
 	  lang: '<?= $fb_lang ?>',

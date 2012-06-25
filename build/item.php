@@ -4,6 +4,24 @@ require_once 'user_class.php';
 
 //GET POST'S ID AND CALL FOR POST'S DATA ARRAY
 $id = $_GET['id'];
+
+if(!$id)
+{
+	$page_name = str_replace("%20", " ", "http://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI']);
+	$page_name = str_replace(SITE_URL."/item.php/", "", $page_name); 
+	$id = $user_class->getPageByName($page_name);
+	
+	if($id)
+	{
+		die(header('Location: '.SITE_URL.'/item.php?id='.$id));
+	}
+	
+	if(!$id)
+	{
+		die(header('Location: '.SITE_URL.'/item.php?id='.md5(time())));
+	}
+}
+
 $post = $main_class->getPosts($id);
 
 //CALL FOR ALL MEDIA ARRAY
