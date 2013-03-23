@@ -41,11 +41,11 @@
 			</li>
 		</ul>
 		<ul class="quick-links" onclick=" _gaq.push(['_trackEvent', 'github', 'go_to_github', 'View on GitHub']);">
-			<li>
-				<iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=dr-dimitru&repo=Adminizer&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="130px" height="30px"></iframe>
+		    <li>
+			    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=dr-dimitru&repo=Adminizer&type=watch&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="130px" height="30px"></iframe>
 			</li>
 			<li>
-				<iframe class="github-btn" src="http://markdotto.github.com/github-buttons/github-btn.html?user=dr-dimitru&repo=Adminizer&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
+			    <iframe class="github-btn" src="http://ghbtns.com/github-btn.html?user=dr-dimitru&repo=Adminizer&type=fork&count=true&size=large" allowtransparency="true" frameborder="0" scrolling="0" width="120px" height="30px"></iframe>
 			</li>
 		</ul>
 		<ul class="quick-links">
